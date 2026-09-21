@@ -18,9 +18,13 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v5
 
+      - name: Restore licensed Cubism SDK
+        shell: pwsh
+        run: ./.github/scripts/restore-cubism-sdk.ps1
+
       - name: Build release
         shell: pwsh
-        run: ./scripts/build-windows.ps1 -Configuration Release -Target bongo_cat -Jobs 4 -SkipTests
+        run: ./scripts/build-windows.ps1 -Configuration Release -Target bongo_cat -Jobs 4 -SkipTests -RequireCubism
 
       - name: Upload portable executable
         uses: actions/upload-artifact@v7

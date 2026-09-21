@@ -62,8 +62,14 @@ BongoCatResult bongo_cat_window_create(BongoCatApp *app, BongoCatError *error) {
             "SDL initialization failed: %s", SDL_GetError());
         return BONGO_CAT_ERROR_PLATFORM;
     }
-    /* Keep a lower-cost MSAA path for drivers that cannot provide 4 samples. */
-    const int options[][2] = {{true, 4}, {true, 2}, {true, 0}, {false, 0}};
+    /* Live2D art already carries smooth edges through texture filtering, so
+       multisampling mostly buys framebuffer bandwidth cost. Default to no
+       MSAA; BONGO_CAT_MSAA=2/4 restores it, and the ladder below keeps
+       lower-cost fallbacks for drivers that cannot satisfy a request. */
+    const char *msaa_env = SDL_getenv("BONGO_CAT_MSAA");
+    int preferred = msaa_env ? (int)SDL_strtol(msaa_env, NULL, 10) : 0;
+    if (preferred != 2 && preferred != 4) preferred = 0;
+    const int options[][2] = {{true, preferred}, {true, 0}, {false, 0}};
     char failure[256] = {0};
     bool force_fallback = SDL_getenv("BONGO_CAT_TEST_GL_FALLBACK") != NULL;
     for (size_t i = 0; i < sizeof(options) / sizeof(options[0]); ++i) {

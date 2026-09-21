@@ -1,6 +1,7 @@
 #include "cubism_model.hpp"
 #include "bongo_cat/gl_api.h"
 
+#include <SDL3/SDL_stdinc.h>
 #include <SDL3/SDL_video.h>
 #include <algorithm>
 #include <cstdint>
@@ -73,8 +74,16 @@ void NativeModel::update_mask_buffers() {
     const bool offscreen_masks = _model->IsUsingMaskingForOffscreen();
     if (!drawable_masks && !offscreen_masks) return;
 
-    // Account for the actual atlas subdivision, including hidden masks.
-    const int extent = std::min(std::max(width_, height_), mask_texture_limit_);
+    // Account for the actual atlas subdivision, including hidden masks. Masks
+    // are sampled with linear filtering, so half-resolution mask buffers keep
+    // edge quality while cutting the per-frame mask render fill by ~4x.
+    static const int mask_scale_percent = [] {
+        const char *env = SDL_getenv("BONGO_CAT_MASK_SCALE_PERCENT");
+        int parsed = env ? (int)SDL_strtol(env, nullptr, 10) : 50;
+        return parsed >= 10 && parsed <= 100 ? parsed : 50;
+    }();
+    const int extent = std::min(std::max(width_, height_), mask_texture_limit_) *
+        mask_scale_percent / 100;
     const int requested = std::max(512, mask_layout_divisions_ * extent);
     const int size = std::min(mask_texture_limit_, ((requested + 511) / 512) * 512);
     if (size == mask_buffer_size_) return;
