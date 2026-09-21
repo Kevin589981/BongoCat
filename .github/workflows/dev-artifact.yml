@@ -1,0 +1,31 @@
+name: Dev Windows Artifact
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bongocat-dev-artifact-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows-portable:
+    name: build / windows-x64 portable
+    runs-on: windows-2022
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v5
+
+      - name: Build release
+        shell: pwsh
+        run: ./scripts/build-windows.ps1 -Configuration Release -Target bongo_cat -Jobs 4 -SkipTests
+
+      - name: Upload portable executable
+        uses: actions/upload-artifact@v7
+        with:
+          name: bongocat-portable-windows-x64-${{ github.run_id }}
+          path: build-cubism/Release/BongoCat.exe
+          if-no-files-found: error
+          retention-days: 7
