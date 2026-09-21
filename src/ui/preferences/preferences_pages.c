@@ -79,8 +79,20 @@ static void page_display(BongoCatApp *app, struct nk_context *context) {
             "Min Opacity When Hidden"),
             tr(app, "pages.preference.cat.hints.hideMinOpacity",
                 "0% hides the pet completely; higher values keep it visible while hovered."),
-            0.0f, &window->hide_min_opacity_percent, 100.0f, 1.0f, 0.0f))
-            bongo_cat_app_retarget_hover_hide(app, SDL_GetTicksNS());
+            0.0f, &window->hide_min_opacity_percent, 100.0f, 1.0f, 0.0f)) {
+        /* The floor may never stay above the window opacity: raising it past
+           the slider pushes the window opacity up instead. */
+        if (window->hide_min_opacity_percent > window_state->opacity_percent) {
+            window_state->opacity_percent = window->hide_min_opacity_percent;
+            bongo_cat_window_cancel_wheel_animation(app);
+            if (!app->hover_hidden) {
+                bongo_cat_app_cancel_hover_fade(app);
+                bongo_cat_platform_set_opacity(&app->platform,
+                    window_state->opacity_percent / 100.0f);
+            }
+        }
+        bongo_cat_app_retarget_hover_hide(app, SDL_GetTicksNS());
+    }
     }
     bongo_cat_pref_row_icon(context, BONGO_CAT_PREF_ICON_KEEP_IN_SCREEN);
     if (bongo_cat_pref_toggle(context, "keep-in-screen", tr(app,
