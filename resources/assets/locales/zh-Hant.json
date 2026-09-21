@@ -30,11 +30,13 @@
           "obsBackground": "純色背景",
           "hideOnHover": "滑鼠游標移入隱藏",
           "hideFadeSeconds": "隱藏漸變時長 (秒)",
+          "hideMinOpacity": "懸停隱藏時最低不透明度",
           "maxFPS": "最大幀率"
         },
         "hints": {
           "hoverRequires": "需要同時開啟上面的[滑鼠穿透]和[置頂]選項",
           "hoverUnavailable": "目前桌面環境暫不支援滑鼠移入隱藏。",
+          "hideMinOpacity": "0% 時滑鼠移入會完全隱藏寵物；數值越高，懸停時保留的能見度越高。",
           "gamepadFourHands": "在手把模式下常駐顯示額外兩隻手，四手一起玩！實際效果依模型而定",
           "gameInput": "遊戲中桌寵沒反應？",
           "gameInputHelp": "試試以系統管理員身分啟動 BongoCat，並將遊戲設為視窗模式。",

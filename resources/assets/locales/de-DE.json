@@ -30,11 +30,13 @@
           "obsBackground": "Einfarbiger Hintergrund",
           "hideOnHover": "Beim Darüberfahren ausblenden",
           "hideFadeSeconds": "Ausblendedauer (s)",
+          "hideMinOpacity": "Mindestopazität beim Ausblenden",
           "maxFPS": "Maximale Bildrate"
         },
         "hints": {
           "hoverRequires": "Die obigen Optionen [Klickdurchlässigkeit] und [Immer im Vordergrund] müssen aktiviert sein.",
           "hoverUnavailable": "Ausblenden bei Mausberührung ist in dieser Desktop-Umgebung nicht verfügbar.",
+          "hideMinOpacity": "0 % blendet das Haustier vollständig aus; höhere Werte halten es beim Überfahren sichtbar.",
           "gamepadFourHands": "Im Gamepad-Modus bleiben zwei zusätzliche Hände sichtbar. Das Aussehen hängt vom Modell ab",
           "gameInput": "Desktop-Tier reagiert im Spiel nicht?",
           "gameInputHelp": "Versuche, BongoCat als Administrator auszuführen und das Spiel in den Fenstermodus zu versetzen.",

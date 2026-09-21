@@ -30,11 +30,13 @@
           "obsBackground": "Solid Background",
           "hideOnHover": "Hide on Hover",
           "hideFadeSeconds": "Fade Duration (s)",
+          "hideMinOpacity": "Min Opacity When Hidden",
           "maxFPS": "Max Frame Rate"
         },
         "hints": {
           "hoverRequires": "Requires both [Pass Through] and [Always on Top] above to be enabled.",
           "hoverUnavailable": "Hover hiding is unavailable in the current desktop environment.",
+          "hideMinOpacity": "0% hides the pet completely; higher values keep it visible while hovered.",
           "gamepadFourHands": "Keep two extra hands visible in gamepad mode. Appearance depends on the model",
           "gameInput": "Pet not responding in games?",
           "gameInputHelp": "Try running BongoCat as administrator and setting the game to windowed mode.",

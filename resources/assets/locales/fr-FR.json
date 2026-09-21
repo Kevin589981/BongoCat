@@ -30,11 +30,13 @@
           "obsBackground": "Arrière-plan uni",
           "hideOnHover": "Masquer au survol",
           "hideFadeSeconds": "Durée du fondu (s)",
+          "hideMinOpacity": "Opacité min. lors du masquage",
           "maxFPS": "Fréquence d'images maximale"
         },
         "hints": {
           "hoverRequires": "Activez les options [Passage des clics] et [Toujours au premier plan] ci-dessus.",
           "hoverUnavailable": "Le masquage au survol est indisponible dans cet environnement de bureau.",
+          "hideMinOpacity": "0 % masque complètement le compagnon ; une valeur plus élevée le garde visible au survol.",
           "gamepadFourHands": "Affiche en permanence deux mains supplémentaires en mode manette. Le rendu dépend du modèle",
           "gameInput": "La mascotte ne réagit pas en jeu ?",
           "gameInputHelp": "Essayez de lancer BongoCat en tant qu’administrateur et de passer le jeu en mode fenêtré.",

@@ -30,11 +30,13 @@
           "obsBackground": "Fundo sólido",
           "hideOnHover": "Ocultar ao Passar o Mouse",
           "hideFadeSeconds": "Duração do fade (s)",
+          "hideMinOpacity": "Opacidade mínima ao ocultar",
           "maxFPS": "Taxa Máxima de Quadros"
         },
         "hints": {
           "hoverRequires": "Ative as opções [Passagem de cliques] e [Sempre no Topo] acima.",
           "hoverUnavailable": "Ocultar ao passar o mouse não está disponível no ambiente de desktop atual.",
+          "hideMinOpacity": "0% oculta o bichinho por completo; valores maiores o mantêm visível ao passar o mouse.",
           "gamepadFourHands": "Mantém duas mãos extras visíveis no modo controle. A aparência depende do modelo",
           "gameInput": "O mascote não responde ao jogar?",
           "gameInputHelp": "Tente executar o BongoCat como administrador e colocar o jogo em modo janela.",

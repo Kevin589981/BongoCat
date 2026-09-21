@@ -73,6 +73,14 @@ static void page_display(BongoCatApp *app, struct nk_context *context) {
             window->hide_on_hover = hide_on_hover;
             bongo_cat_app_update_hover(app, SDL_GetTicksNS());
         }
+        bongo_cat_pref_row_icon(context, BONGO_CAT_PREF_ICON_HIDE_FADE);
+        if (bongo_cat_pref_slider(context, "hide-min-opacity", tr(app,
+            "pages.preference.cat.labels.hideMinOpacity",
+            "Min Opacity When Hidden"),
+            tr(app, "pages.preference.cat.hints.hideMinOpacity",
+                "0% hides the pet completely; higher values keep it visible while hovered."),
+            0.0f, &window->hide_min_opacity_percent, 100.0f, 1.0f, 0.0f))
+            bongo_cat_app_retarget_hover_hide(app, SDL_GetTicksNS());
     }
     bongo_cat_pref_row_icon(context, BONGO_CAT_PREF_ICON_KEEP_IN_SCREEN);
     if (bongo_cat_pref_toggle(context, "keep-in-screen", tr(app,
