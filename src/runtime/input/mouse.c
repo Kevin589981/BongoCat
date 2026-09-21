@@ -90,6 +90,15 @@ void bongo_cat_app_retarget_hover_hide(BongoCatApp *app, uint64_t now) {
     if (app && app->hover_hidden) hover_start_fade(app, true, now);
 }
 
+void bongo_cat_app_sync_opacity_floor(BongoCatApp *app, uint64_t now) {
+    if (!app) return;
+    if (app->settings.window.hide_min_opacity_percent >
+        app->session.window.opacity_percent)
+        app->settings.window.hide_min_opacity_percent =
+            app->session.window.opacity_percent;
+    bongo_cat_app_retarget_hover_hide(app, now);
+}
+
 void bongo_cat_app_update_hover(BongoCatApp *app, uint64_t now) {
     if (!app || !app->window) return;
     bool enabled = !app->platform.hover_hide_unavailable &&
