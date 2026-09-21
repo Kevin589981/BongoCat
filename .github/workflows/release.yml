@@ -27,7 +27,6 @@ jobs:
   build:
     name: build / ${{ matrix.platform }}
     needs: version-check
-    if: github.repository == 'vladelaina/BongoCat'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
